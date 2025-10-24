@@ -1,5 +1,5 @@
 from dataclasses import dataclass
 
 @dataclass
-class GetUserUsecaseInput:
+class GetUserByUserIdUsecaseInput:
     user_id: int

@@ -1,5 +1,5 @@
 from infrastructure.controllers.get_user_by_user_id.get_user_by_user_id_controller import GetUserByUserIdController
-from bootstraps.app.get_user_usecase import BootstrapGetUserUsecase
+from bootstraps.app.get_user_by_user_id_usecase import BootstrapGetUserByUserIdUsecase
 
 class BootstrapGetUserByUserIdController:
     _instance: GetUserByUserIdController | None = None
@@ -7,6 +7,6 @@ class BootstrapGetUserByUserIdController:
     @classmethod
     def get(cls) -> GetUserByUserIdController:
         if cls._instance is None:
-            usecase = BootstrapGetUserUsecase.get()
+            usecase = BootstrapGetUserByUserIdUsecase.get()
             cls._instance = GetUserByUserIdController(usecase)
         return cls._instance
