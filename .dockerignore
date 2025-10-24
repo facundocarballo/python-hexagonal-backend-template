@@ -3,6 +3,7 @@ venv/
 
 # Python cache
 __pycache__/
+.pytest_cache/
 *.pyc
 
 # MacOS files
@@ -11,3 +12,15 @@ __pycache__/
 # IDE files
 .vscode/
 .idea/
+
+# Git files
+.git/
+.gitignore
+
+# Dockerfiles
+.dockerignore
+Dockerfile
+docker-compose.yml
+
+# Ignore test folder
+test

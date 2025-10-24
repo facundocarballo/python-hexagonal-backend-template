@@ -5,9 +5,9 @@ services:
       - "${EXTERNAL_PORT}:${INTERNAL_PORT}"
     # Volume is needed to be able to reload the app in real time with every change inside of /src
     volumes:
-      - ./src:/app/src
+      - .:/app
     build:
       context: .
       args:
         - INTERNAL_PORT=${INTERNAL_PORT}
-    command: ["uvicorn", "src.main:app", "--reload", "--host", "0.0.0.0", "--port", "${INTERNAL_PORT}"]
+    command: ["uvicorn", "main:app", "--reload", "--host", "0.0.0.0", "--port", "${INTERNAL_PORT}"]
