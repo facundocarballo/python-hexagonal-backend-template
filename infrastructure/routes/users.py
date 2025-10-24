@@ -1,11 +1,12 @@
-from fastapi import APIRouter, HTTPException
-from bootstraps.app.get_user_usecase import BootstrapGetUserUsecase
-from app.get_user_usecase.get_user_usecase_input import GetUserUsecaseInput
-from app.get_user_usecase.get_user_usecase_output import GetUserUsecaseOutputNotFound, User
+from fastapi import APIRouter
+from domain.entities.user import User
+from bootstraps.infrastructure.controllers.get_user_by_user_id_controller import BootstrapGetUserByUserIdController
 
-
+# Router
 UsersRouter = APIRouter()
-usecase = BootstrapGetUserUsecase.get()
+
+# Controllers
+get_user_by_user_id_controller = BootstrapGetUserByUserIdController.get()
 
 @UsersRouter.get(
         "/{user_id}",
@@ -19,14 +20,4 @@ usecase = BootstrapGetUserUsecase.get()
         }
 )
 async def get_user_by_user_id(user_id: int):
-    usecase_input = GetUserUsecaseInput(user_id=user_id)
-    usecase_output = usecase.execute(usecase_input)
-
-    if isinstance(usecase_output, GetUserUsecaseOutputNotFound):
-        raise HTTPException(
-            status_code=404,
-            detail="User not found"
-        )
-    
-    if isinstance(usecase_output, User):
-        return usecase_output
+    return get_user_by_user_id_controller.execute(user_id=user_id)

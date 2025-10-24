@@ -8,7 +8,3 @@ app.include_router(
     prefix="/users",
     tags=["users"]
 )
-
-@app.get("/")
-async def root():
-    return {"message": "¡Hola Mundo con FastAPI!"}
